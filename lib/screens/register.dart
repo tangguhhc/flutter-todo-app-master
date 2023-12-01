@@ -36,10 +36,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Mendaftar'),
+      ),
       body: Padding(
           padding: const EdgeInsets.all(10),
-          child: ListView(
-            children: <Widget>[
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20,
+              ),
               Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
@@ -114,6 +120,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   )
                 ],
               ),
+              Container(
+                width: 50,
+                height: 50,
+                child: CircularProgressIndicator(),
+              )
             ],
           )),
     );
