@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/auth.dart';
 import 'package:flutter_todo_app/screens/home.dart';
 import 'package:flutter_todo_app/screens/register.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -16,6 +17,13 @@ class _LoginScreenState extends State<LoginScreen> {
   String errorMessage = '';
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
+  late SharedPreferences sharedPreferences;
+
+
+
+  void initialGetSavedData() async{
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
 
   Future<void> signInWithEmailAndPassword() async {
     try {
@@ -45,13 +53,23 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  bool user = false;
   @override
   void initState() {
     super.initState();
+    _initCheck();
 
     /// Check status true/false user sudah login atau belum
     /// if true nanti ke Homescreen
     /// if false nanti ke login
+  }
+   void _initCheck() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool('user') != null) {
+      setState(() {
+        user = prefs.getBool('user')!;
+      });
+    }
   }
 
   @override
