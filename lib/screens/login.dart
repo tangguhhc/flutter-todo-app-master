@@ -63,14 +63,16 @@ class _LoginScreenState extends State<LoginScreen> {
     /// if true nanti ke Homescreen
     /// if false nanti ke login
   }
-   void _initCheck() async {
+   checkingTheSavedData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getBool('user') != null) {
-      setState(() {
-        user = prefs.getBool('user')!;
-      });
+    String username = prefs.getString('username');
+    if (username == null) {
+      Navigator.pushReplacementNamed(context, '/login');
+    } else {
+      Navigator.pushReplacementNamed(context, '/main_page');
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
