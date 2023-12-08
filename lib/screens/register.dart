@@ -14,6 +14,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String errorMessage = '';
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
+  bool isLoading = false;
 
   Future<void> createUserWithEmailAndPassword() async {
     try {
@@ -86,6 +87,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: ElevatedButton(
                     child: const Text('Daftar'),
                     onPressed: () {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      Future.delayed(Duration(seconds: 3), (){
+                        
+                        setState(() {
+                        isLoading = false;
+                      });
+                      });
                       debugPrint('LOGIN');
                       if (_usernameController.text.isEmpty &&
                           _controllerPassword.text.isEmpty) {

@@ -67,9 +67,9 @@ class _LoginScreenState extends State<LoginScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String username = prefs.getString('username');
     if (username == null) {
-      Navigator.pushReplacementNamed(context, '/login');
+      Navigator.pushReplacementNamed(context, '/login.dart');
     } else {
-      Navigator.pushReplacementNamed(context, '/main_page');
+      Navigator.pushReplacementNamed(context, '/todo.dart');
     }
   }
 
