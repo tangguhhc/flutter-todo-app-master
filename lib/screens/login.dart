@@ -13,7 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  static const String _title = 'Tugas Login UI';
+  static const String title = 'Tugas Login UI';
   String errorMessage = '';
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    _initCheck();
+    initState();
 
     /// Check status true/false user sudah login atau belum
     /// if true nanti ke Homescreen
@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
    checkingTheSavedData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String username = prefs.getString('username');
+    String? username = prefs.getString('username');
     if (username == null) {
       Navigator.pushReplacementNamed(context, '/login.dart');
     } else {
